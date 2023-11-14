@@ -1,6 +1,7 @@
 package angelomoreno.Es2_141123.services;
 
 import angelomoreno.Es2_141123.entities.Utente;
+import angelomoreno.Es2_141123.enums.Role;
 import angelomoreno.Es2_141123.exceptions.BadRequestException;
 import angelomoreno.Es2_141123.exceptions.NotFoundException;
 import angelomoreno.Es2_141123.payloads.entities.UtenteDTO;
@@ -41,6 +42,7 @@ public class UtenteService {
         utente.setCognome(body.cognome());
         utente.setEmail(body.email());
         utente.setPassword(body.password());
+        utente.setRole(Role.UTENTE);
         utente.setUrlImg("https://ui-avatars.com/api/?name=" + body.nome() + "+" + body.cognome());
         return utenteRepository.save(utente);
     }
@@ -60,6 +62,7 @@ public class UtenteService {
          utente.setCognome(body.getCognome());
          utente.setEmail(body.getEmail());
          utente.setPassword(body.getPassword());
+         utente.setRole(Role.UTENTE);
          utente.setUrlImg("https://ui-avatars.com/api/?name=" + body.getNome() + "+" + body.getCognome());
          return utenteRepository.save(utente);
     }
