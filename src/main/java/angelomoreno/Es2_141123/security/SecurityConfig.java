@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -28,5 +30,10 @@ public class SecurityConfig {
         http.addFilterBefore(exceptionsHandlerFilter, JWTAuthFilter.class); // aggiungo prima di JWTAuthFilter il  filtro delle eccezioni
         http.authorizeHttpRequests(request -> request.requestMatchers("/**").permitAll()); // aggiungo/rimuovo protezione per cui venga/non venga richiesto l'autenticazione su tutti gli endopoint
         return http.build();
+    }
+
+    @Bean
+    PasswordEncoder getEncoder() {
+        return new BCryptPasswordEncoder(15);
     }
 }

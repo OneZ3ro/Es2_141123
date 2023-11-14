@@ -21,8 +21,6 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @Autowired
-    private UtenteService utenteService;
 
     @PostMapping("/login")
     public UtenteLoginSuccessDTO login(@RequestBody UtenteLoginDTO body) {
@@ -36,7 +34,7 @@ public class AuthController {
             throw new BadRequestException(validation.getAllErrors());
         } else {
             try {
-                return utenteService.saveUtente(body);
+                return authService.saveUtente(body);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

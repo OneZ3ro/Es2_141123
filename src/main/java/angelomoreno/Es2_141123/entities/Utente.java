@@ -2,6 +2,7 @@ package angelomoreno.Es2_141123.entities;
 
 import angelomoreno.Es2_141123.enums.Role;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ import java.util.List;
 @Table(name = "utenti")
 @Getter
 @Setter
+@JsonIgnoreProperties({"password", "dispositivi"})
 public class Utente implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +31,6 @@ public class Utente implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "utente")
-    @JsonIgnore
     private List<Dispositivo> dispositivi;
     @Column(name = "url_img")
     private String urlImg;
