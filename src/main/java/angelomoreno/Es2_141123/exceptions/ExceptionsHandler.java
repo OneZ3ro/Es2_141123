@@ -3,11 +3,12 @@ package angelomoreno.Es2_141123.exceptions;
 import angelomoreno.Es2_141123.payloads.errors.ErrorsDTO;
 import angelomoreno.Es2_141123.payloads.errors.ErrorsWithListDTO;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
