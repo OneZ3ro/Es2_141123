@@ -27,9 +27,6 @@ public class UtenteService {
     @Autowired
     private Cloudinary cloudinary;
 
-    @Autowired
-    private PasswordEncoder bcrypt;
-
     public Page<Utente> getUtenti (int page, int size, String orderBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(orderBy));
         return utenteRepository.findAll(pageable);
@@ -51,7 +48,7 @@ public class UtenteService {
          utente.setNome(body.getNome());
          utente.setCognome(body.getCognome());
          utente.setEmail(body.getEmail());
-         utente.setPassword(bcrypt.encode(body.getPassword()));
+//         utente.setPassword(bcrypt.encode(body.getPassword()));
          utente.setRole(Role.UTENTE);
          utente.setUrlImg("https://ui-avatars.com/api/?name=" + body.getNome() + "+" + body.getCognome());
          return utenteRepository.save(utente);

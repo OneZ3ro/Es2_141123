@@ -7,6 +7,7 @@ import angelomoreno.Es2_141123.services.DispositivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -40,12 +41,14 @@ public class DispositiviController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public Dispositivo modificaDispositivo (@PathVariable int id, @RequestBody @Validated DispositivoDTO body) {
         return dispositivoService.modificaDispositivo(id, body);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminaDispositivo(@PathVariable int id) {
         dispositivoService.eliminaDispositivo(id);
     }
